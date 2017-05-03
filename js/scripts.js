@@ -6,6 +6,10 @@ function translateWord(word) {
   if (vowels.indexOf(word[0]) !== -1) {
     newWord = word.slice(1) + word.slice(0,1) + "way";
   }
+
+  if (consonants.indexOf(word[0]) !== -1) {
+    newWord = word.slice(1) + word.slice(0,1) + "ay"
+  }
   return newWord;
 }
 
