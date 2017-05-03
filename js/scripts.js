@@ -7,7 +7,9 @@ function translateWord(word) {
     newWord = word.slice(1) + word.slice(0,1) + "way";
   }
 
-  if (consonants.indexOf(word[0]) !== -1) {
+  if ((consonants.indexOf(word[0]) !== -1)
+      ||
+     (word[0] === "y")) {
     newWord = word.slice(1) + word.slice(0,1) + "ay"
   }
   return newWord;
