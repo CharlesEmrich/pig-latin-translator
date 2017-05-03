@@ -9,15 +9,20 @@ function translateWord(word) {
 
   if ((consonants.indexOf(word[0]) !== -1)) {
     var moved = ["", 0];
-    for (var i = 0; i < word.length; i++) {
-      if (consonants.indexOf(word[i]) !== -1) {
-        moved[0] += word[i];
-        moved[1] += 1;
-      } else {
-        break
+
+    if (word[0] + word[1] === "qu") {
+      newWord = word.slice(2) + word.slice(0,2) + "ay";
+    } else {
+      for (var i = 0; i < word.length; i++) {
+        if (consonants.indexOf(word[i]) !== -1) {
+          moved[0] += word[i];
+          moved[1] += 1;
+        } else {
+          break
+        }
       }
+      newWord = word.slice(moved[1]) + moved[0] + "ay"
     }
-    newWord = word.slice(moved[1]) + moved[0] + "ay"
   }
   return newWord;
 }
