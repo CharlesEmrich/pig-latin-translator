@@ -10,4 +10,4 @@
 | User enters a word beginning with "qu" | "quay" | "ayquay" |
 | User enters a word beginning with a consonant, and containing others | "carport" | "arportcay" |
 | User enters a word beginning with multiple consonants and containing others | "scramjet" | "amjetscray" |
-| User enters a word |   |   |
+| User enters a sentence | "car go fast" | "arcay ogay astfay" |
