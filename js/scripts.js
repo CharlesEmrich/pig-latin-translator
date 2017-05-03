@@ -2,12 +2,12 @@ var vowels     = ["a","e","i","o","u"];
 var consonants = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]
 
 function translateWord(word) {
-  var newWord
+  var newWord;
   if (vowels.indexOf(word[0]) !== -1) {
     newWord = word + "way";
   }
 
-  if ((consonants.indexOf(word[0]) !== -1)) {
+  if ((vowels.indexOf(word[0]) === -1)) {
     var moved = ["", 0];
 
     if (word[0] + word[1] === "qu") {
@@ -57,3 +57,5 @@ $(function() {
 // how should "wyoming" be handled?
 //don't forget capitalization when parsing sentences:
 // word[1].toUpperCase() + word.slice(2) + word[0,1]
+//remove consonants array?
+//acount for uppercase
