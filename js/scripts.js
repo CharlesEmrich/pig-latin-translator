@@ -7,10 +7,17 @@ function translateWord(word) {
     newWord = word.slice(1) + word.slice(0,1) + "way";
   }
 
-  if ((consonants.indexOf(word[0]) !== -1)
-      ||
-     (word[0] === "y")) {
-    newWord = word.slice(1) + word.slice(0,1) + "ay"
+  if ((consonants.indexOf(word[0]) !== -1)) {
+    var moved = ["", 0];
+    for (var i = 0; i < word.length; i++) {
+      if (consonants.indexOf(word[i]) !== -1) {
+        moved[0] += word[i];
+        moved[1] += 1;
+      } else {
+        break
+      }
+    }
+    newWord = word.slice(moved[1]) + moved[0] + "ay"
   }
   return newWord;
 }
@@ -22,3 +29,7 @@ $(function() {
     var result = translateWord(userInput);    $("#output").text(result);
   });
 });
+
+// how should "wyoming" be handled?
+//don't forget capitalization when parsing sentences:
+// word[1].toUpperCase() + word.slice(2) + word[0,1]
