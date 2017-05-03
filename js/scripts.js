@@ -1,10 +1,13 @@
-var vowels     = ["a","e","i","o","u"];
-var consonants = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","z"]
+var vowels      = ["a","e","i","o","u"];
+var consonants  = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","z"];
+var punctuation = [",","!","."];
 
 function translateWord(word) {
   var newWord;
   if (vowels.indexOf(word[0]) !== -1) {
+    //KNOWN BUG: This broke in the final ten minutes. We should be able to use the return on line 33. Determine why we can't.
     newWord = word + "way";
+    return newWord;
   }
   // var expression = new Regex();
 
@@ -33,23 +36,37 @@ function translateWord(word) {
 function translateSentence(string) {
 var newSentence = "";
 var newArr = [];
-//strip all punctuation and split into words
 var wordArray = string.split(/\s/g);
-// for (var i = 0; i < wordArray.length; i++) {
-//   if (wordArray[i][0]) {
-//
-//   }
-//   if (wordArray[i][wordArray[i].length]) {
-//
-//   }
-// }
-console.log(wordArray);
+// Prototype for loop to grab punctuation from words
+// KNOWN BUG: This code breaks 67, with 66 a decent fix. And causes letters after commas to go untranslated?.
+for (var i = 0; i < wordArray.length; i++) {
+  if (punctuation.indexOf(wordArray[i][0]) !== -1) {
+    wordArray.splice(i, 1,
+                    wordArray[i][0],
+                    wordArray[0].slice(1));
+    i+= 2;
+  }
+  if (punctuation.indexOf(wordArray[i][wordArray[i].length - 1]) !== -1) {
+    // console.log([wordArray[i],
+    //             wordArray[i].slice(0, wordArray[i].length - 1),
+    //             wordArray[i][wordArray[i].length - 1]]);
+    wordArray.splice(i, 1,
+                    wordArray[i].slice(0, wordArray[i].length - 1),
+                    wordArray[i][wordArray[i].length - 1]);
+    i+= 2;
+  }
+}
 //pass all words through translateWord
 for (var i = 0; i < wordArray.length; i++) {
-  newSentence += translateWord(wordArray[i].toLowerCase()) + " ";
+  if (punctuation.indexOf(wordArray[i]) !== -1) {
+    newSentence += translateWord(wordArray[i].toLowerCase());
+  } else {
+    newSentence += " " + translateWord(wordArray[i].toLowerCase());
+  }
 }
 //repunctuate, recapitalize sentence? Ugh.
-newSentence = newSentence[0].toUpperCase() + newSentence.slice(1);
+newSentence = newSentence[1].toUpperCase() + newSentence.slice(2);
+// newSentence = newSentence[0].toUpperCase() + newSentence.slice(1);
 return newSentence;
 }
 
