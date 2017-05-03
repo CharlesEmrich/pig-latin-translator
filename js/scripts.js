@@ -4,7 +4,7 @@ var consonants = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t
 function translateWord(word) {
   var newWord
   if (vowels.indexOf(word[0]) !== -1) {
-    newWord = word.slice(1) + word.slice(0,1) + "way";
+    newWord = word + "way";
   }
 
   if ((consonants.indexOf(word[0]) !== -1)) {
@@ -25,6 +25,10 @@ function translateWord(word) {
     }
   }
   return newWord;
+}
+
+function translateSentence(string) {
+
 }
 
 $(function() {

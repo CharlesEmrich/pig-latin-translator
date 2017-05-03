@@ -3,7 +3,7 @@
 | Behavior | Input | Output |
 |------|---|---|
 | User enters a word  | "word" | "word" |
-| User enters a word which begins with a vowel | "ah" | "haway" |
+| User enters a word which begins with a vowel | "ah" | "ahway" |
 | User enters a word with an initial consonant | "car" | "arcay" |
 | User enters a word beginning with "y" | "yonder" | "onderyay" |
 | User enters a word with more than one initial consonant | "scram" | "amscray" |
