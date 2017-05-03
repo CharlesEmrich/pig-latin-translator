@@ -1,13 +1,14 @@
 var vowels     = ["a","e","i","o","u"];
-var consonants = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]
+var consonants = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","z"]
 
 function translateWord(word) {
   var newWord;
   if (vowels.indexOf(word[0]) !== -1) {
     newWord = word + "way";
   }
+  // var expression = new Regex();
 
-  if ((vowels.indexOf(word[0]) === -1)) {
+  if ((consonants.indexOf(word[0]) !== -1) || word[0] === "y") {
     var moved = ["", 0];
 
     if (word[0] + word[1] === "qu") {
@@ -31,12 +32,18 @@ function translateWord(word) {
 
 function translateSentence(string) {
 var newSentence = "";
+var newArr = [];
 //strip all punctuation and split into words
-var wordArray = string.split(" ");
-// .forEach(function(element) {
-//   element.replace(/\W/g, "");
-// });
-// console.log(wordArray);
+var wordArray = string.split(/\s/g);
+// for (var i = 0; i < wordArray.length; i++) {
+//   if (wordArray[i][0]) {
+//
+//   }
+//   if (wordArray[i][wordArray[i].length]) {
+//
+//   }
+// }
+console.log(wordArray);
 //pass all words through translateWord
 for (var i = 0; i < wordArray.length; i++) {
   newSentence += translateWord(wordArray[i].toLowerCase()) + " ";
@@ -58,4 +65,3 @@ $(function() {
 //don't forget capitalization when parsing sentences:
 // word[1].toUpperCase() + word.slice(2) + word[0,1]
 //remove consonants array?
-//acount for uppercase
